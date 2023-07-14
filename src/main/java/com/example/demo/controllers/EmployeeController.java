@@ -1,30 +1,26 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Employee;
 import com.example.demo.repositories.EmployeeRepository;
 
-@RestController
-@RequestMapping("/employees")
+@Controller
 public class EmployeeController {
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
-        return employeeRepository.findById(id).orElse(null);
+    @GetMapping("/employees/{id}")
+    public String getEmployeeById(@PathVariable Long id, Model model) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        model.addAttribute("employee", employee);
+        return "employee";
     }
 
-    @PostMapping("/new")
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
-    }
 }
+

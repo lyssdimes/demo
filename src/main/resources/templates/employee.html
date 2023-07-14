@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Displaying Employee Plus Address</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Displaying Employee Plus Address</h1>
+
+    <h2>Employee:</h2>
+    <ul>
+        <li>ID: [[${employee?.id}]]</li>
+        <li>Name: [[${employee?.firstName}]] [[${employee?.lastName}]]</li>
+        <li>Suffix: [[${employee?.suffix}]]</li>
+    </ul>
+
+    <h2>Address:</h2>
+    <ul>
+        <li>Line 1: [[${employee?.address?.addressLine1}]]</li>
+        <li>Line 2: [[${employee?.address?.addressLine2}]]</li>
+        <li>Apartment Number: [[${employee?.address?.apartmentNumber}]]</li>
+        <li>City: [[${employee?.address?.city}]]</li>
+        <li>State: [[${employee?.address?.state}]]</li>
+        <li>ZIP: [[${employee?.address?.zip}]]</li>
+        <li>ZIP+4: [[${employee?.address?.zipPlusFour}]]</li>
+        <li>County: [[${employee?.address?.county}]]</li>
+        <li>Country: [[${employee?.address?.country}]]</li>
+    </ul>
+</body>
+</html>
+
+
+
+

@@ -26,19 +26,19 @@ public class Populator implements CommandLineRunner {
         final Logger logger = LoggerFactory.getLogger(Populator.class);
 
         // Create and save sample employees
-        Employee employee1 = new Employee("John", "Jacob", "Jingleheimer");
+        Employee employee1 = new Employee("John", "Jacob", "Jingleheimer", "I");
         employeeRepository.save(employee1);
 
-        Employee employee2 = new Employee("Emily", "Rose", "Clark");
+        Employee employee2 = new Employee("Emily", "Rose", "Clark", "II");
         employeeRepository.save(employee2);
 
         logger.info("Saved employee: {}", employee1);
         logger.info("Saved employee: {}", employee2);
 
-        Address address1 = new Address(1L, "street", "sample", "next", "4323", "2342", "fef", "lemon");
+        Address address1 = new Address(employee1.getId(), "262 N Highland", "East Landing", "Apt #4", "Toledo", "OH", "44674", "44674-1111", "Lemon", "USA");
         addressRepository.save(address1);
 
-        Address address2 = new Address(2L, "road", "simple", "first", "6345", "3434", "fsef", "orange");
+        Address address2 = new Address(employee2.getId(), "123 Happy Road", "Sunset Circle", "Apt #1", "San Diego", "CA", "91872", "91872-5555", "Sunny", "USA");
         addressRepository.save(address2);
 
         logger.info("Saved address: {}", address1);
@@ -47,3 +47,4 @@ public class Populator implements CommandLineRunner {
     }
 
 }
+

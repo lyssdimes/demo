@@ -1,8 +1,10 @@
 package com.example.demo.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -16,7 +18,8 @@ public class Employee {
     private String lastName;
     private String suffix;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "identification")
     private Address address;
 
     public Employee() {
@@ -28,14 +31,6 @@ public class Employee {
         this.lastName = lastName;
         this.suffix = suffix;
     }
-
-    public Employee(String firstName, String middleName, String lastName) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.suffix = null;
-}
-
 
     public Long getId() {
         return id;

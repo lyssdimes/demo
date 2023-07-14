@@ -1,13 +1,16 @@
 package com.example.demo.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Address {
     @Id
     @GeneratedValue
+    @Column(name = "identification")
     private Long identification;
     private Long employeeId;
     private String addressLine1;
@@ -19,6 +22,9 @@ public class Address {
     private String zipPlusFour;
     private String county;
     private String country;
+
+    @OneToOne(mappedBy = "address")
+    private Employee employee;
 
     public Address() {
     }
@@ -36,11 +42,6 @@ public class Address {
         this.zipPlusFour = zipPlusFour;
         this.county = county;
         this.country = country;
-    }
-
-    public Address(Long employeeId, String addressLine1, String city, String state, String zip,
-            String zipPlusFour, String county, String country) {
-        this(employeeId, addressLine1, null, null, city, state, zip, zipPlusFour, county, country);
     }
 
     public Long getIdentification() {
@@ -105,3 +106,4 @@ public class Address {
     }
 
 }
+
